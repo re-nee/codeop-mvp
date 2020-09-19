@@ -13,26 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: [
-        {
-          id: 1,
-          text: "Do Not Let Yesterday Take Up Too Much Of Today.",
-          color: "white",
-          backgroundColor: "#81D8D0",
-        },
-        {
-          id: 2,
-          text: "The purpose of art is washing the dust of daily life off our souls.",
-          color: "orange",
-          backgroundColor: "yellow"
-        },
-        {
-          id: 3,
-          text: "If You Are Working On Something That You Really Care About, You Do Not Have To Be Pushed. The Vision Pulls You.",
-          color: "darkblue",
-          backgroundColor: "lightblue"
-        }
-      ]
+      quotes: []
     };
   }
 
@@ -47,6 +28,7 @@ class App extends React.Component {
       quotes: this.state.quotes.filter(q => q.id !== quote.id)
     })
   }
+  // componentDidMount()
 
   render() {
     return (

@@ -1,6 +1,7 @@
+// DO NOT MODIFY
+
 require("dotenv").config();
 const mysql = require("mysql");
-// const InitDbSql = require("./InitDbSql");
 
 module.exports = async function db(query) {
   const results = {

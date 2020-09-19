@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const db = require('../model/helper');
 
-/* GET home page and admin page. */
+/* GET home page and quotes. */
 router.get('/', function(req, res, next) {
-  res.send({ title: 'user view' });
+  db('SELECT * FROM quotes;')
+  .then(results => {
+    res.send(results.data);
+  })
+  .catch(err => 
+    res.status(500).send(err));
 });
 
-router.get('/admin', function(req, res, next) {
-  res.send( 'admin page' );
-});
+// router.get('/quotes', function(req, res, next) {
+//   res.send( 'all quotes' );
+// });
 
 module.exports = router;

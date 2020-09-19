@@ -1,4 +1,5 @@
 require("dotenv").config();
+const mysql = require("mysql");
 const InitDbSql = require("./InitDbSql.js");
 
 const DB_HOST = process.env.DB_HOST;
