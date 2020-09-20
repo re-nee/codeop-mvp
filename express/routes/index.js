@@ -16,4 +16,12 @@ router.get('/', function(req, res, next) {
 //   res.send( 'all quotes' );
 // });
 
+// router.post('/quotes/:id', function(req, res, next) {
+//     res.send();
+// });
+
+// router.delete('/quotes/:id', function(req, res, next) {
+//   res.send(msg: 'Deleted');
+// });
+
 module.exports = router;
