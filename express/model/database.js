@@ -19,12 +19,6 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-  // let sql =
-  //   "DROP TABLE if exists students; CREATE TABLE students(
-    // id INT NOT NULL AUTO_INCREMENT, 
-    // firstname VARCHAR(40) not null, 
-    // lastname VARCHAR(40) not null, 
-    // PRIMARY KEY (id));";
 
   con.query(InitDbSql, function(err, result) {
     if (err) throw err;

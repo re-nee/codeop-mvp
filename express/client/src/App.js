@@ -17,18 +17,24 @@ class App extends React.Component {
     };
   }
 
+  // updateInput()
+
+  // componentDidMount()
+
   addQuote(quote) {
     this.setState({
       quotes: [...this.state.quotes, quote]
     });
   }
 
+  // updateQuote()
+
   deleteQuote(quote) {
     this.setState({
       quotes: this.state.quotes.filter(q => q.id !== quote.id)
     })
   }
-  // componentDidMount()
+  
 
   render() {
     return (
