@@ -3,10 +3,19 @@ var router = express.Router();
 const db = require('../model/helper');
 
 
+//Helper functions_________________________________________________
+
 async function getAllQuotes() {
   let results = await db('SELECT * FROM quotes');
   return results.data;
 }
+
+async function quoteExist(id) {
+  let results = await db(`SELECT * FROM quotes WHERE id = ${id}`);
+  return results.data.length === 1;
+}
+
+//_________________________________________________________________
 
 
 router.get('/', function(req, res, next) {
@@ -16,6 +25,24 @@ router.get('/', function(req, res, next) {
   })
   .catch(err => 
     res.status(500).send(err));
+});
+
+router.get('/:id', async function(req, res, next) {
+  let { id } = req.params;
+
+  try {
+    if ( quoteExist(id) === false ) {
+      res.status(404).send( {error: 'Not found'} );
+      return;
+    }
+    let sql = (`SELECT * FROM quotes WHERE id = ${id}`);
+    let results = await db(sql);
+    res.send(results.data[0]);
+
+  } catch (err) {
+    res.status(500).send( {error: err} );
+  }
+  
 });
 
 
@@ -38,13 +65,24 @@ router.post('/', async function(req, res, next) {
     }
 });
 
-// router.put('/quotes/:id', function(req, res, next) {
-//     res.send();
-// });
 
+router.delete('/:id', async function(req, res, next) {
+  let { id } = req.params;
 
-// router.delete('/quotes/:id', function(req, res, next) {
-//   res.send(msg: 'Deleted');
-// });
+  try {
+    if (await quoteExist(id) === false) {
+      res.status(404).send( {error: 'Not found'} );
+      return;
+    }
+  
+    let sql = `DELETE FROM quotes WHERE id = ${id}`;
+    await db(sql);
+    res.status(201).send( await getAllQuotes() );
+
+} catch (err) {
+    res.status(500).send({ error: err });
+}
+
+});
 
 module.exports = router;

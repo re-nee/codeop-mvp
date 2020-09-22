@@ -9,6 +9,8 @@ import {
   Route,
 } from "react-router-dom";
 
+const API_URL = 'http://localhost:5000/';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,9 +19,14 @@ class App extends React.Component {
     };
   }
 
-  // updateInput()
+  componentDidMount() {
+    fetch(`${API_URL}`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ quotes: json });
+      });
+  }
 
-  // componentDidMount()
 
   addQuote(quote) {
     this.setState({
@@ -27,7 +34,6 @@ class App extends React.Component {
     });
   }
 
-  // updateQuote()
 
   deleteQuote(quote) {
     this.setState({
@@ -48,7 +54,8 @@ class App extends React.Component {
             />
           </Route>
           <Route path="/">
-            <UserView quotes={this.state.quotes} />
+            <UserView 
+              quotes={this.state.quotes} />
           </Route>
         </Switch>
       </Router>
