@@ -19,15 +19,15 @@ class UserView extends React.Component {
 
     render() {
         const quote = this.props.quotes[this.state.featuredQuoteIndex];
-        const backgroundStyle = { backgroundColor: quote ? quote.backgroundColor : "white" };
-        const quoteStyle = { color: quote ? quote.color : "black" };
+        const backgroundStyle = { backgroundColor: quote ? quote.background_color : "white" };
+        const quoteStyle = { color: quote ? quote.quote_color : "black" };
         return (
 
             <div className="UserView" style={backgroundStyle}>
                 <Link to="/admin" className="admin-link">admin</Link>
 
                 <h1 className="quote" style={quoteStyle}>
-                    {quote ? quote.text : "Please add quote(s) in admin view"}
+                    {quote ? quote.quote : "Please add quote(s) in admin view"}
                 </h1>
             </div>
         );

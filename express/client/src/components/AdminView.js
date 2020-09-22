@@ -16,9 +16,9 @@ class AdminView extends React.Component {
         const nextId = Math.max(...this.props.quotes.map(q => q.id)) + 1;
         this.props.addQuote({
             id: nextId,
-            text: this.textRef.current.value,
-            backgroundColor: this.backgroundColorRef.current.state.hex,
-            color: this.colorRef.current.state.hex,
+            quote: this.textRef.current.value,
+            background_color: this.backgroundColorRef.current.state.hex,
+            quote_color: this.colorRef.current.state.hex,
         });
     }
 
@@ -35,8 +35,8 @@ class AdminView extends React.Component {
 
                 {this.props.quotes.map(quote => (
                     <div key={quote.id} className="horizontal-1">
-                        <p style={{ color: quote.color, backgroundColor: quote.backgroundColor }}>
-                            {quote.text}
+                        <p style={{ color: quote.quote_color, background_color: quote.background_color }}>
+                            {quote.quote}
                         </p>
                         <button className="center" onClick={() => this.deleteQuote(quote)}>Delete</button>
                     </div>
